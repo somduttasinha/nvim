@@ -652,6 +652,19 @@ mason_lspconfig.setup_handlers {
   end,
 }
 
+-- Key mappings for running Gradle tasks
+vim.api.nvim_set_keymap('n', '<leader>grb', [[:!./gradlew build<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>grc', [[:!./gradlew clean<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>grt', [[:!./gradlew testCR>]], { noremap = true, silent = true })
+
+-- Key mappings for running Maven tasks
+vim.api.nvim_set_keymap('n', '<leader>mvp', [[:!./mvnw package<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>mvc', [[:!./mvnw clean<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>mvt', [[:!./mvnw test<CR>]], { noremap = true, silent = true })
+
+
+-- Add more mappings as needed for other tasks
+
 
 vim.lsp.set_log_level("off")
 -- [[ Configure nvim-cmp ]]
