@@ -1,8 +1,15 @@
 -- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
 --
+local jdtls_ok, jdtls = pcall(require, "jdtls")
+if not jdtls_ok then
+  vim.notify "JDTLS not found, install with `:LspInstall jdtls`"
+  return
+end
+
+vim.api.nvim_out_write('java.lua loaded!\n')
 
 local jdtls_dir = vim.fn.stdpath('data') .. '/mason/packages/jdtls'
-local config_dir = jdtls_dir .. '/config_mac'
+local config_dir = jdtls_dir .. '/config_linux'
 local plugins_dir = jdtls_dir .. '/plugins/'
 local path_to_jar = plugins_dir .. 'org.eclipse.equinox.launcher_1.6.600.v20231106-1826.jar'
 local path_to_lombok = jdtls_dir .. '/lombok.jar'
@@ -33,11 +40,11 @@ local config = {
     '-Declipse.product=org.eclipse.jdt.ls.core.product',
     '-Dlog.protocol=true',
     '-Dlog.level=ALL',
-    '-Xmx1g',
+    'javaagent:/home/somduttasinha/.local/share/nvim/mason/packages/jdtls/lombok.jar', --.. path_to_lombok,
+    '-Xms1g',
     '--add-modules=ALL-SYSTEM',
     '--add-opens', 'java.base/java.util=ALL-UNNAMED',
     '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
-    'javaagent:' .. path_to_lombok,
     '-jar', path_to_jar,
          -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                                       ^^^^^^^^^^^^^^
          -- Must point to the                                                     Change this to

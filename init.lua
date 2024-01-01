@@ -1,3 +1,5 @@
+
+
 --[[
 
 =====================================================================
@@ -70,11 +72,12 @@ require('lazy').setup({
   -- NOTE: First, some plugins that don't require any configuration
 
   -- Git related plugins
-  'tpope/vim-fugitive',
-  'tpope/vim-rhubarb',
+  
+  {'tpope/vim-fugitive'},
+  {'tpope/vim-rhubarb'},
 
   -- Detect tabstop and shiftwidth automatically
-  'tpope/vim-sleuth',
+  {'tpope/vim-sleuth'},
 
   -- NOTE: This is where your plugins related to LSP can be installed.
   --  The configuration is done below. Search for lspconfig to find it below.
@@ -188,6 +191,25 @@ require('lazy').setup({
       end,
     },
   },
+  {
+    'nvim-telescope/telescope.nvim',
+    branch = '0.1.x',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      -- Fuzzy Finder Algorithm which requires local dependencies to be built.
+      -- Only load if `make` is available. Make sure you have the system
+      -- requirements installed.
+      {
+        'nvim-telescope/telescope-fzf-native.nvim',
+        -- NOTE: If you are having trouble with this installation,
+        --       refer to the README for telescope-fzf-native for more instructions.
+        build = 'make',
+        cond = function()
+          return vim.fn.executable 'make' == 1
+        end,
+      },
+    },
+  },
 
   {
     -- Theme inspired by Atom
@@ -225,25 +247,6 @@ require('lazy').setup({
   { 'numToStr/Comment.nvim', opts = {} },
 
   -- Fuzzy Finder (files, lsp, etc)
-  {
-    'nvim-telescope/telescope.nvim',
-    branch = '0.1.x',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      -- Fuzzy Finder Algorithm which requires local dependencies to be built.
-      -- Only load if `make` is available. Make sure you have the system
-      -- requirements installed.
-      {
-        'nvim-telescope/telescope-fzf-native.nvim',
-        -- NOTE: If you are having trouble with this installation,
-        --       refer to the README for telescope-fzf-native for more instructions.
-        build = 'make',
-        cond = function()
-          return vim.fn.executable 'make' == 1
-        end,
-      },
-    },
-  },
 
   {
     -- Highlight, edit, and navigate code
@@ -654,12 +657,12 @@ mason_lspconfig.setup_handlers {
 
 -- Key mappings for running Gradle tasks
 vim.api.nvim_set_keymap('n', '<leader>grb', [[:!./gradlew build<CR>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>grc', [[:!./gradlew clean<CR>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>grt', [[:!./gradlew testCR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>grc', [[:!./gradlew compileJava<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>grt', [[:!./gradlew test<CR>]], { noremap = true, silent = true })
 
 -- Key mappings for running Maven tasks
 vim.api.nvim_set_keymap('n', '<leader>mvp', [[:!./mvnw package<CR>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>mvc', [[:!./mvnw clean<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>mvc', [[:!./mvnw compile<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>mvt', [[:!./mvnw test<CR>]], { noremap = true, silent = true })
 
 
