@@ -38,4 +38,7 @@ return {
             end, opts)
         end,
     },
+    {
+        'mfussenegger/nvim-jdtls',
+    },
 }
