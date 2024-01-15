@@ -11,10 +11,12 @@ end
 
 -- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
 local jdtls_path = vim.fn.stdpath 'data' .. '/mason/packages/jdtls'
-local path_to_lsp_server = jdtls_path .. '/config_linux'
+local path_to_lsp_server = jdtls_path .. '/config_mac'
 local path_to_plugins = jdtls_path .. '/plugins/'
 local path_to_jar = path_to_plugins .. 'org.eclipse.equinox.launcher_1.6.600.v20231106-1826.jar'
 local lombok_path = jdtls_path .. '/lombok.jar'
+local path_to_java_dap = '/Users/somsinha/.local/share/nvim/java-debug/com.microsoft.java.debug.plugin/target/'
+
 
 local root_markers = { '.git', 'mvnw', 'gradlew', 'pom.xml', 'build.gradle' }
 local root_dir = require('jdtls.setup').find_root(root_markers)
@@ -31,7 +33,7 @@ local config = {
     -- The command that starts the language server
     -- See: https://github.com/eclipse/eclipse.jdt.ls#running-from-the-command-line
     cmd = {
-        '/home/somduttasinha/.jdks/corretto-17.0.9/bin/java',
+        '/Users/somsinha/.sdkman/candidates/java/17.0.9-amzn/bin/java',
         '-Declipse.application=org.eclipse.jdt.ls.core.id1',
         '-Dosgi.bundles.defaultStartLevel=4',
         '-Declipse.product=org.eclipse.jdt.ls.core.product',
@@ -62,7 +64,7 @@ local config = {
     -- for a list of options
     settings = {
         java = {
-            home = '/home/somduttasinha/.jdks/corretto-17.0.9/',
+            home = '/Users/somsinha/.sdkman/candidates/java/17.0.9-amzn/',
             eclipse = {
                 downloadSources = true,
             },
@@ -71,7 +73,7 @@ local config = {
                 runtimes = {
                     {
                         name = 'JavaSE-17',
-                        path = '/home/somduttasinha/.jdks/corretto-17.0.9/',
+                        path = '/Users/somsinha/.sdkman/candidates/java/17.0.9-amzn',
                     },
                 },
             },
@@ -125,12 +127,16 @@ local config = {
         allow_incremental_sync = true,
     },
     init_options = {
-        bundles = {},
+        bundles = {
+            vim.fn.glob(path_to_java_dap .. "com.microsoft.java.debug.plugin-0.50.0.jar", 1)
+        }
     },
 }
 
 config['on_attach'] = function(client, bufnr)
     require('keymaps').map_java_keys(bufnr)
+    require('jdtls').setup_dap { hotcodereplace = 'auto' }
+    vim.lsp.codelens.refresh()
 end
 
 -- This starts a new client & server,
