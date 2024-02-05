@@ -15,8 +15,7 @@ local path_to_lsp_server = jdtls_path .. '/config_mac'
 local path_to_plugins = jdtls_path .. '/plugins/'
 local path_to_jar = path_to_plugins .. 'org.eclipse.equinox.launcher_1.6.700.v20231214-2017.jar'
 local lombok_path = jdtls_path .. '/lombok.jar'
-local path_to_java_dap = '/Users/somsinha/.local/share/nvim/java-debug/com.microsoft.java.debug.plugin/target/'
-
+local path_to_java_dap = '/Users/somsinha/.config/nvim/java-debug/'
 
 local root_markers = { '.git', 'mvnw', 'gradlew', 'pom.xml', 'build.gradle' }
 local root_dir = require('jdtls.setup').find_root(root_markers)
@@ -27,6 +26,7 @@ end
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
 local workspace_dir = vim.fn.stdpath 'data' .. '/site/java/workspace-root/' .. project_name
 os.execute('mkdir ' .. workspace_dir)
+local mason_registry = require 'mason-registry'
 
 -- Main Config
 local config = {
@@ -126,16 +126,24 @@ local config = {
     flags = {
         allow_incremental_sync = true,
     },
-    init_options = {
-        bundles = {
-            vim.fn.glob(path_to_java_dap .. "com.microsoft.java.debug.plugin-0.50.0.jar", 1)
-        }
-    },
+
+}
+
+local bundles = {
+    vim.fn.glob(mason_registry.get_package('java-debug-adapter'):get_install_path() ..
+    '/extension/server/com.microsoft.java.debug.plugin-*.jar'),
+}
+
+vim.list_extend(bundles, vim.split(vim.fn.glob(mason_registry.get_package('java-test'):get_install_path() .. '/extension/server/*.jar'), '\n'))
+
+config['init_options'] = {
+    bundles = bundles,
 }
 
 config['on_attach'] = function(client, bufnr)
     require('keymaps').map_java_keys(bufnr)
     require('jdtls').setup_dap { hotcodereplace = 'auto' }
+    require('jdtls.dap').setup_dap_main_class_configs()
     vim.lsp.codelens.refresh()
 end
 
