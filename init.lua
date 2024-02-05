@@ -1,7 +1,7 @@
 vim.g.mapleader = ' '
 vim.o.relativenumber = true
-vim.o.tabstop = 2
-vim.o.shiftwidth = 2
+vim.o.tabstop = 4
+vim.o.shiftwidth = 4
 vim.o.expandtab = true
 
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -25,3 +25,10 @@ vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
 vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
+
+vim.api.nvim_exec([[
+  augroup AutoRunGf
+    autocmd!
+    autocmd BufWritePost * execute 'normal! \<leader>gf'
+  augroup END
+]], false)

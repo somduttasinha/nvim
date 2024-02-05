@@ -1,4 +1,4 @@
--- Java Language Server configuration.
+-- Java Language Server configuration.org.eclipse.equinox.launcher_1.6.600.v20231106-1826.jar
 -- Locations:
 -- 'nvim/ftplugin/java.lua'.
 -- 'nvim/lang-servers/intellij-java-google-style.xml'
@@ -13,7 +13,7 @@ end
 local jdtls_path = vim.fn.stdpath 'data' .. '/mason/packages/jdtls'
 local path_to_lsp_server = jdtls_path .. '/config_mac'
 local path_to_plugins = jdtls_path .. '/plugins/'
-local path_to_jar = path_to_plugins .. 'org.eclipse.equinox.launcher_1.6.600.v20231106-1826.jar'
+local path_to_jar = path_to_plugins .. 'org.eclipse.equinox.launcher_1.6.700.v20231214-2017.jar'
 local lombok_path = jdtls_path .. '/lombok.jar'
 local path_to_java_dap = '/Users/somsinha/.local/share/nvim/java-debug/com.microsoft.java.debug.plugin/target/'
 
@@ -143,5 +143,5 @@ end
 -- or attaches to an existing client & server depending on the `root_dir`.
 -- require('jdtls').start_or_attach(config)
 --
-require('jdtls').start_or_attach(config)
+jdtls.start_or_attach(config)
 --require('jdtls').setup(config)
