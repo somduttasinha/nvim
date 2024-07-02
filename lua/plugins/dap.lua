@@ -61,7 +61,6 @@ return {
         widgets.centered_float(widgets.scopes)
       end)
 
-
       dap.listeners.before.attach.dapui_config = function()
         dapui.open()
       end
@@ -84,5 +83,13 @@ return {
   },
   {
     'rcarriga/nvim-dap-ui',
+  },
+  {
+    'leoluz/nvim-dap-go',
+    ft = 'go',
+    depends = 'mfussenegger/nvim-dap',
+    config = function()
+      require('dap-go').setup()
+    end,
   },
 }

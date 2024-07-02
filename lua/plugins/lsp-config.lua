@@ -9,7 +9,7 @@ return {
     'williamboman/mason-lspconfig.nvim',
     config = function()
       require('mason-lspconfig').setup {
-        ensure_installed = { 'lua_ls', 'jdtls' },
+        ensure_installed = { 'lua_ls', 'jdtls', 'gopls', 'hls', 'pyright' },
       }
     end,
   },
@@ -24,6 +24,14 @@ return {
       local lspconfig = require 'lspconfig'
       local opts = {}
       lspconfig.lua_ls.setup {
+        capabilities = capabilities,
+      }
+
+      lspconfig.pyright.setup {
+        capabilities = capabilities,
+      }
+
+      lspconfig.r_language_server.setup {
         capabilities = capabilities,
       }
 
@@ -61,6 +69,25 @@ return {
             schemas = require('schemastore').yaml.schemas(),
           },
         },
+      }
+
+      lspconfig.gopls.setup {
+        capabilities = capabilities,
+        root_dir = lspconfig.util.root_pattern('go.mod', '.git', 'go.work'),
+        settings = {
+          gopls = {
+            completeUnimported = true,
+            usePlaceholders = true,
+            analyses = {
+              unusedparams = true,
+              shadow = true,
+            },
+          },
+        },
+      }
+
+      lspconfig.hls.setup {
+        --filetypes = { 'haskell', 'lhaskell', 'cabal' },
       }
 
       vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
