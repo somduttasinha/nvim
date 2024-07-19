@@ -3,16 +3,17 @@ return {
   config = function()
     local null_ls = require 'null-ls'
     null_ls.setup {
+      debug = true,
       sources = {
-        null_ls.builtins.code_actions.shellcheck,
+        -- null_ls.builtins.code_actions.shellcheck,
         null_ls.builtins.formatting.stylua,
         null_ls.builtins.diagnostics.markdownlint,
         null_ls.builtins.diagnostics.actionlint,
         null_ls.builtins.diagnostics.checkstyle.with {
-          extra_args = { '-c', '/Users/somsinha/.config/nvim/checkstyle/java_checks.xml' },
+          extra_args = { '-c', '/home/som/.config/nvim/checkstyle/java_checks.xml' },
         },
 
-        null_ls.builtins.diagnostics.ruff,
+        -- null_ls.builtins.diagnostics.ruff,
 
         null_ls.builtins.formatting.google_java_format,
         null_ls.builtins.formatting.prettierd,
@@ -22,7 +23,7 @@ return {
 
         null_ls.builtins.formatting.black,
 
-        null_ls.builtins.formatting.fourmolu,
+        -- null_ls.builtins.formatting.fourmolu,
       },
     }
 

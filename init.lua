@@ -8,6 +8,8 @@ vim.api.nvim_create_autocmd('FileType', {
   pattern = 'markdown',
   callback = function()
     vim.bo.tabstop = 2 -- Sets 'tabstop' to 2 for buffer-local settings in Markdown files
+    vim.opt_local.textwidth = 80
+    vim.opt_local.formatoptions:append 't'
   end,
 })
 
