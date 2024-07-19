@@ -90,6 +90,10 @@ return {
         --filetypes = { 'haskell', 'lhaskell', 'cabal' },
       }
 
+      lspconfig.gradle_ls.setup {
+        capabilities = capabilities,
+      }
+
       vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
       vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
       vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
