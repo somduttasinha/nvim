@@ -55,6 +55,10 @@ return {
         capabilities = capabilities,
       }
 
+      lspconfig.bashls.setup {
+        capabilities = capabilities,
+      }
+
       lspconfig.yamlls.setup {
         capabilities = capabilities,
         settings = {
