@@ -2,3 +2,6 @@ tags
 test.sh
 .luarc.json
 nvim
+bin/
+lib/
+pyvenv.cfg

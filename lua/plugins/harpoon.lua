@@ -77,19 +77,6 @@ return {
       harpoon:list():select(9)
     end)
 
-    vim.keymap.set('n', '<leader>10', function()
-      harpoon:list():select(10)
-    end)
-
-    vim.keymap.set('n', '<leader>11', function()
-      harpoon:list():select(11)
-    end)
-
-    vim.keymap.set('n', '<leader>12', function()
-      harpoon:list():select(12)
-    end)
-
-
 
     vim.keymap.set('n', '<leader>r1', function()
       harpoon:list():removeAt(1)
@@ -126,19 +113,6 @@ return {
     vim.keymap.set('n', '<leader>r9', function()
       harpoon:list():removeAt(9)
     end)
-
-    vim.keymap.set('n', '<leader>r10', function()
-      harpoon:list():removeAt(10)
-    end)
-
-    vim.keymap.set('n', '<leader>r11', function()
-      harpoon:list():removeAt(11)
-    end)
-
-    vim.keymap.set('n', '<leader>r12', function()
-      harpoon:list():removeAt(12)
-    end)
-
 
     vim.keymap.set('n', '<C-e>', function()
       toggle_telescope(harpoon:list())

@@ -9,11 +9,12 @@ return {
         null_ls.builtins.formatting.stylua,
         null_ls.builtins.diagnostics.markdownlint,
         null_ls.builtins.diagnostics.actionlint,
-        null_ls.builtins.diagnostics.checkstyle.with {
-          extra_args = { '-c', '/home/som/.config/nvim/checkstyle/java_checks.xml' },
-        },
+        --null_ls.builtins.diagnostics.checkstyle.with {
+        --  extra_args = { '-c', '/sun_checks.xml' },
+        --},
 
         -- null_ls.builtins.diagnostics.ruff,
+        null_ls.builtins.diagnostics.solhint,
 
         null_ls.builtins.formatting.google_java_format,
         null_ls.builtins.formatting.prettierd,

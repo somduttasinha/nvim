@@ -28,6 +28,7 @@ function P.map_java_keys(bufnr)
     key_map('n', '<leader>df', [[:lua require'jdtls'.test_class()<CR>]])
     key_map('n', '<leader>dn', [[:lua require'jdtls'.test_nearest_method()<CR>]])
     key_map('n', '<leader>o', [[:lua require'jdtls'.organize_imports()<CR>]])
+    key_map('n', '<leader>jc', [[:JdtCompile<CR>]])
 end
 
 return P
