@@ -28,10 +28,7 @@ local workspace_dir = vim.fn.stdpath 'data' .. '/site/java/workspace-root/' .. p
 os.execute('mkdir ' .. workspace_dir)
 local mason_registry = require 'mason-registry'
 
-
 -- Java Specific keymaps
-
-
 
 -- Main Config
 local config = {
@@ -134,7 +131,7 @@ local config = {
 }
 
 local bundles = {
-  vim.fn.glob(mason_registry.get_package('java-debug-adapter'):get_install_path() .. '/extension/server/com.microsoft.java.debug.plugin-*.jar'),
+  vim.fn.glob('/Users/somsinha/projects/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar', 1),
 }
 
 vim.list_extend(bundles, vim.split(vim.fn.glob(mason_registry.get_package('java-test'):get_install_path() .. '/extension/server/*.jar'), '\n'))
@@ -144,6 +141,7 @@ vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 vim.bo.softtabstop = 2
 
+vim.api.nvim_set_keymap('n', '<leader>jr', ':!java<CR>', { noremap = true, silent = true })
 
 config['init_options'] = {
   bundles = bundles,
@@ -155,30 +153,32 @@ config['on_attach'] = function(client, bufnr)
   local dap = require 'dap'
 
   dap.configurations.java = dap.configurations.java or {}
-  table.insert(dap.configurations.java, {
-    type = 'java',
-    request = 'launch',
-    name = 'Debug (Launch) with Preview',
-    mainClass = '${file}',
-    projectName = '${workspaceFolder}',
-    vmArgs = '--enable-preview',
-  })
+  --table.insert(dap.configurations.java, {
+  --  type = 'java',
+  --  request = 'launch',
+  --  name = 'Debug (Launch) with Preview',
+  --  mainClass = '${file}',
+  --  classPaths = {},
+  --  projectName = '${workspaceFolder}',
+  --  javaExec = '/Users/somsinha/.sdkman/candidates/java/17.0.11-amzn/bin/java',
+  --  vmArgs = '--enable-preview',
+  --})
 
-  table.insert(dap.configurations.java, {
-    -- You need to extend the classPath to list your dependencies.
-    -- `nvim-jdtls` would automatically add the `classPaths` property if it is missing
-    classPaths = {},
+  --table.insert(dap.configurations.java, {
+  --  -- You need to extend the classPath to list your dependencies.
+  --  -- `nvim-jdtls` would automatically add the `classPaths` property if it is missing
+  --  classPaths = {},
 
-    -- If using multi-module projects, remove otherwise.
-    javaExec = '/Users/somsinha/.sdkman/candidates/java/17.0.11-amzn/bin/java',
+  --  -- If using multi-module projects, remove otherwise.
+  --  javaExec = '/Users/somsinha/.sdkman/candidates/java/17.0.11-amzn/bin/java',
 
-    -- If using the JDK9+ module system, this needs to be extended
-    -- `nvim-jdtls` would automatically populate this property
-    modulePaths = {},
-    name = 'Launch YourClassName',
-    request = 'launch',
-    type = 'java',
-  })
+  --  -- If using the JDK9+ module system, this needs to be extended
+  --  -- `nvim-jdtls` would automatically populate this property
+  --  modulePaths = {},
+  --  name = 'Launch YourClassName',
+  --  request = 'launch',
+  --  type = 'java',
+  --})
 
   require('jdtls.dap').setup_dap_main_class_configs()
   vim.lsp.codelens.refresh()
