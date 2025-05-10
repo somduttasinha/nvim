@@ -17,6 +17,9 @@ return {
     'b0o/schemastore.nvim',
   },
   {
+    'nvim-java/nvim-java',
+  },
+  {
     'neovim/nvim-lspconfig',
     config = function()
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
