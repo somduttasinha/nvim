@@ -6,7 +6,7 @@ return {
 
     config.setup {
       auto_install = true,
-      ensure_installed = { 'c', 'lua', 'vim', 'vimdoc', 'query', 'elixir', 'heex', 'javascript', 'html', 'markdown', 'python', 'java', 'go', 'r' },
+      ensure_installed = { 'c', 'lua', 'vim', 'vimdoc', 'query', 'elixir', 'heex', 'javascript', 'html', 'markdown', 'python', 'java', 'go', 'r', 'cmake' },
       highlight = { enable = true },
       indent = { enable = true },
     }

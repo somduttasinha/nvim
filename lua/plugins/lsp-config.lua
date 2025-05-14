@@ -59,6 +59,11 @@ return {
             lspconfig.marksman.setup {
                 capabilities = capabilities,
             }
+      lspconfig.astro.setup {
+        capabilities = capabilities,
+      }
+
+
 
             lspconfig.docker_compose_language_service.setup {
                 capabilities = capabilities,
@@ -76,12 +81,13 @@ return {
                 capabilities = capabilities,
             }
 
-            lspconfig.clangd.setup {
-                capabilities = capabilities,
-                --init_options = {
-                --    fallbackFlags = { '-std=c++20', '-I/usr/include/c++/13' },
-                --},
-            }
+
+      lspconfig.clangd.setup {
+        capabilities = capabilities,
+        init_options = {
+          fallbackFlags = { '-std=c++20' },
+        },
+      }
 
             lspconfig.yamlls.setup {
                 capabilities = capabilities,
@@ -116,7 +122,9 @@ return {
             lspconfig.hls.setup {
                 --filetypes = { 'haskell', 'lhaskell', 'cabal' },
             }
-
+lspconfig.gradle_ls.setup {
+        capabilities = capabilities,
+      }
             local java = require 'java'
 
             java.setup()
@@ -127,7 +135,7 @@ return {
                     vim.keymap.set('n', '<leader>tl', function()
                         java.runner.built_in.toggle_logs()
                     end, opts)
-
+      
                     vim.keymap.set('n', '<leader>tc', function()
                         java.test.run_current_class()
                     end, opts)
