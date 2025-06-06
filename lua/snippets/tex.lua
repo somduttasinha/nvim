@@ -33,4 +33,22 @@ return {
     t '\\item ',
     i(1, 'Item'),
   }),
+
+  s('ss', {
+    t '\\subsection{',
+    i(1, 'Subsection title'),
+    t '}',
+  }),
+
+  s('sss', {
+    t '\\subsubsection{',
+    i(1, 'Subsbsection title'),
+    t '}',
+  }),
+
+  s('l', {
+    t '\\left(',
+    i(1, 'x'),
+    t '\\right)',
+  }),
 }
