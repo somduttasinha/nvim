@@ -56,10 +56,9 @@ return {
         capabilities = capabilities,
       }
 
+      vim.lsp.enable 'astro'
+
       lspconfig.marksman.setup {
-        capabilities = capabilities,
-      }
-      lspconfig.astro.setup {
         capabilities = capabilities,
       }
 
@@ -87,8 +86,6 @@ return {
       }
 
       lspconfig.yamlls.setup {
-        capabilities = capabilities,
-        settings = {
           yaml = {
             schemaStore = {
               -- You must disable built-in schemaStore support if you want to use
@@ -99,8 +96,9 @@ return {
             },
             schemas = require('schemastore').yaml.schemas(),
           },
-        },
-      }
+            }
+    
+      
 
       lspconfig.gopls.setup {
         root_dir = lspconfig.util.root_pattern('go.mod', '.git', 'go.work'),
@@ -116,40 +114,15 @@ return {
         },
       }
 
+      require('java').setup()
+
+      lspconfig.jdtls.setup {
+        capabilities = capabilities,
+      }
+
       lspconfig.hls.setup {
         --filetypes = { 'haskell', 'lhaskell', 'cabal' },
       }
-      lspconfig.gradle_ls.setup {
-        capabilities = capabilities,
-      }
-      local java = require 'java'
-
-      java.setup()
-
-      --lspconfig.jdtls.setup {
-      --  capabilities = capabilities,
-      --  on_attach = function(client, bufnr)
-      --    vim.keymap.set('n', '<leader>tl', function()
-      --      java.runner.built_in.toggle_logs()
-      --    end, opts)
-
-      --    vim.keymap.set('n', '<leader>tc', function()
-      --      java.test.run_current_class()
-      --    end, opts)
-
-      --    vim.keymap.set('n', '<leader>tr', function()
-      --      java.test.view_last_report()
-      --    end, opts)
-
-      --    vim.keymap.set('n', '<leader>dc', function()
-      --      java.test.debug_current_class()
-      --    end, opts)
-
-      --    vim.keymap.set('n', '<leader>rm', function()
-      --      java.runner.built_in.run_app {}
-      --    end, opts)
-      --  end,
-      --}
 
       lspconfig.gradle_ls.setup {
         capabilities = capabilities,
@@ -180,8 +153,5 @@ return {
         vim.lsp.buf.format { async = true }
       end, opts)
     end,
-  },
-  {
-    'mfussenegger/nvim-jdtls',
   },
 }
