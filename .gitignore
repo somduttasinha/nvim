@@ -5,3 +5,4 @@ nvim
 bin/
 lib/
 pyvenv.cfg
+.env
