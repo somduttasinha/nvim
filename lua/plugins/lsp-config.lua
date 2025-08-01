@@ -1,17 +1,7 @@
 return {
     {
-        'nvim-java/nvim-java',
-        lazy = false,
-        config = function()
-            require('java').setup {
-                jdtls = {
-                    version = 'v1.46.1',
-                },
-            }
-        end,
-    },
-    {
         'mason-org/mason.nvim',
+        version = '^1.0.0',
         opts = {
             registries = {
                 'github:nvim-java/mason-registry',
@@ -24,6 +14,7 @@ return {
     },
     {
         'williamboman/mason-lspconfig.nvim',
+        version = '^1.0.0',
         opts = {
             ensure_installed = { 'lua_ls', 'pyright', 'ltex', 'texlab', 'jdtls', 'gopls' },
         },
