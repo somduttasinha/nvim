@@ -5,7 +5,7 @@ return {
     opts = {
         -- add any opts here
         -- for example
-        provider = 'gemini',
+        provider = 'claude',
         providers = {
             openai = {
                 endpoint = 'https://api.openai.com/v1',
@@ -18,7 +18,7 @@ return {
             },
             claude = {
                 endpoint = 'https://api.anthropic.com',
-                model = 'claude-3-5-sonnet-20241022',
+                model = 'claude-3-7-sonnet-20250219',
                 extra_request_body = {
                     temperature = 0.75,
                     max_tokens = 4096,
