@@ -1,7 +1,6 @@
 return {
     {
         'mason-org/mason.nvim',
-        version = '^1.0.0',
         opts = {
             registries = {
                 'github:nvim-java/mason-registry',
@@ -14,9 +13,8 @@ return {
     },
     {
         'williamboman/mason-lspconfig.nvim',
-        version = '^1.0.0',
         opts = {
-            ensure_installed = { 'lua_ls', 'pyright', 'ltex', 'texlab', 'jdtls', 'gopls' },
+            ensure_installed = { 'lua_ls', 'pyright', 'ltex', 'texlab', 'jdtls', 'gopls', 'rust_analyzer', 'stylua'},
         },
     },
     {

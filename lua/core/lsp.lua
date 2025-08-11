@@ -73,4 +73,4 @@ vim.lsp.config('vtsls', vtsls_config)
 vim.lsp.config('vue_ls', vue_ls_config)
 vim.lsp.enable { 'vtsls', 'vue_ls' }
 
-vim.lsp.enable { 'lua_ls', 'jdtls', 'gopls', 'ltex', 'texlab', 'astro-ls', 'clangd', 'matlab-language-server', 'lemminx', 'vue_ls' }
+vim.lsp.enable { 'lua_ls', 'gopls', 'ltex', 'texlab', 'astro-ls', 'clangd', 'matlab-language-server', 'lemminx', 'vue_ls' }
