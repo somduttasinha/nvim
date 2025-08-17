@@ -14,4 +14,6 @@ vim.api.nvim_create_autocmd('FileType', {
     end,
 })
 
-
+-- In your colorscheme or init.lua
+vim.api.nvim_set_hl(0, 'CopilotChatHeader', { fg = '#7C3AED', bold = true })
+vim.api.nvim_set_hl(0, 'CopilotChatSeparator', { fg = '#374151' })
