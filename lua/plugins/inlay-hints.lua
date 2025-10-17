@@ -4,8 +4,8 @@ return {
     dependencies = { 'neovim/nvim-lspconfig' },
     config = function()
         require('inlay-hints').setup {
-            commands = { enable = true },
-            autocmd = { emable = true },
+            commands = { enable = false },
+            autocmd = { enable = false },
         }
     end,
 }

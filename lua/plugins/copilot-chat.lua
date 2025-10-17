@@ -9,7 +9,7 @@ return {
             require('CopilotChat').setup(opts)
             vim.g.copilot_no_tab_map = true
             vim.keymap.set('i', '<S-Tab>', 'copilot#Accept("\\<S-Tab>")', { expr = true, replace_keycodes = false })
-            vim.keymap.set('n', '<leader>cc', ':CopilotChatToggle<CR>', { silent = true, noremap = true })
+            vim.keymap.set('n', '<C-p>', ':CopilotChatToggle<CR>', { silent = true, noremap = true })
             -- Quick chat keybinding
             vim.keymap.set('n', '<leader>ccq', function()
                 local input = vim.fn.input 'Quick Chat: '
@@ -39,7 +39,7 @@ return {
             },
             separator = '━━',
             show_folds = false, -- Disable folding for cleaner look
-            auto_insert_mode = true, -- Enter insert mode when opening
+            auto_insert_mode = false, -- Enter insert mode when opening
         },
     },
 }

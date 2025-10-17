@@ -15,7 +15,7 @@ return {
     {
         'williamboman/mason-lspconfig.nvim',
         opts = {
-            ensure_installed = { 'lua_ls', 'pyright', 'ltex', 'texlab', 'jdtls', 'gopls' },
+            ensure_installed = { 'lua_ls', 'pyright', 'ltex', 'texlab', 'gopls', 'vtsls' },
         },
     },
     -- JSON/YAML schema store
