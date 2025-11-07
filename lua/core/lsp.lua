@@ -64,5 +64,4 @@ local vue_ls_config = {
 vim.lsp.config('vtsls', vtsls_config)
 vim.lsp.config('vue_ls', vue_ls_config)
 vim.lsp.enable { 'vtsls', 'vue_ls' }
-vim.lsp.enable { 'ruff' }
-vim.lsp.enable { 'lua_ls', 'ltex', 'texlab', 'astro-ls', 'clangd', 'matlab-language-server', 'lemminx', 'vue_ls', 'vtsls' }
+vim.lsp.enable { 'lua_ls', 'ltex', 'texlab', 'astro-ls', 'clangd', 'matlab-language-server', 'lemminx', 'vue_ls', 'vtsls', 'ruff', 'pyright' }
